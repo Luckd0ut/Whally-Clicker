@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    text-align: center;
+}
+p {
+    font-size: 1.4rem;
+}
+
+nav {
+    background: #0ab0e2;
+    padding: 15px 20px;
+    border-radius: 20px;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+nav button {
+    margin-right: 10px;
+    padding: 10px 20px;
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+.rewardscall {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+
+.rewardscard {
+    background: #222;
+    border: 2px solid #444;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    color: white;
+}
+
+
+.rewardscard:hover {
+    border-color: #66aaff;
+    transform: scale(1.05);
+}
+
+.rewardscard img {
+    max-width: 100px;
+    max-height: 160px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+#textline {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    text-align: center;
+    height: 30px;
+    transition: opacity 0.5s ease;
+}
+
+#textline {
+    position: fixed;        /* makes it float above everything */
+    top: 20px;              /* distance from top of screen */
+    left: 50%;              /* center horizontally */
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    opacity: 0;             /* start invisible */
+    transition: opacity 0.4s ease;
+    pointer-events: none;   /* clicks pass through it */
+    z-index: 9999;          /* stays above all buttons */
+}
