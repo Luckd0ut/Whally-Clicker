@@ -16,7 +16,7 @@ const save=  document.getElementById("save");
 
 
 let count = 0;
-let score = 1000000;
+let score = 1;
 let basecost =  1000;
 let level = 1
 let inactivityTimer;
