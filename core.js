@@ -11,9 +11,12 @@ const afktimer=document.getElementById("afktimer");
 const warning= document.getElementById("warning");
 const resetstats=  document.getElementById("resetstats");
 const nfts= document.getElementById("nfts");
+const save=  document.getElementById("save");
+
+
 
 let count = 0;
-let score = 1;
+let score = 1000000;
 let basecost =  1000;
 let level = 1
 let inactivityTimer;
@@ -23,6 +26,44 @@ let royalsubjectscost= 25000;
 let nftscost= 100000;
 let timer= 0;
 let passiveactive = true;
+
+//save object for JSON is savedata. call savegame() to update savedata before parsing.
+function savegame() {
+const savedata = {
+count,
+score,
+basecost,
+level,
+passive,
+ppoolcost,
+royalsubjectscost,
+nftscost,
+timer
+}
+const json = JSON.stringify(savedata);
+localStorage.setItem("savefile", json);
+};
+
+save.addEventListener("click", () => {
+    savegame();
+});
+
+function loadgame () {
+    const json = localStorage.getItem("savefile");
+    if (!json) return;
+    const data = JSON.parse(json);
+
+    count = data.count;
+    score = data.score;
+    basecost = data.basecost;
+    level = data.level;
+    passive = data.passive;
+    ppoolcost = data.ppoolcost;
+    royalsubjectscost = data.royalsubjectscost;
+    nftscost = data.nftscost;
+    timer = data.timer;
+    updateUI();
+}
 
 //basic function to update the UI after each upgrade.
 function updateUI() {
@@ -51,11 +92,6 @@ setInterval(() => {
     }
 }
 }, 1000);
-
-
-
-
-
 //main click function
 button.addEventListener("click", () => {
     clearTimeout(inactivityTimer);
@@ -81,8 +117,6 @@ clickmessage.textContent= ""
 pointslog.textContent = ""
 }, 5000);
 });
-
-
 //function for the main clicker upgrade. max lvl 9. (671,000 cost)
 upgradebtn.addEventListener("click", () => {
     let missing =  basecost - count;
@@ -183,3 +217,10 @@ if ( nftscost > 700000)
     nfts.textContent = "Max Level";
 }
 });
+
+
+loadgame();
+//next plan is to connect the rewards buttons to the main program to track and subtract points from the count when nfts are claimed.
+//then we need to add the prestige reset function to this program, max of 3x resets for 2x point values next season.
+//JSON functions can all be created as well while we wait for server connection. 
+//
