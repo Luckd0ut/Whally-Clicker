@@ -5,21 +5,43 @@ body {
     margin: 0;
     padding: 20px;
 }
+
+body.rewardsbody{
+     background-image:url(rewardsimg/mainbackground.png) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
 h1 {
     text-align: center;
 }
+h2 {
+    text-align: center;
+    font-size: x-large;
+}
 p {
     font-size: 1.4rem;
+    text-align: center;
+    
+}
+#aboutp p {
+text-align: left;
 }
 
+
 nav {
-    background: #0ab0e2;
+    background: transparent;
     padding: 15px 20px;
-    border-radius: 20px;
+    border-radius: 0 0 20px 20px;
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
 }
+
 nav button {
     margin-right: 10px;
     padding: 10px 20px;
@@ -43,6 +65,9 @@ nav button {
     cursor: pointer;
     transition: 0.2s;
     color: white;
+    height: 250px;
+
+
 }
 
 
@@ -52,8 +77,8 @@ nav button {
 }
 
 .rewardscard img {
-    max-width: 100px;
-    max-height: 160px;
+    max-width: 200px;
+    max-height: 200px;
     object-fit: contain;
     margin-bottom: 10px;
 }
@@ -64,20 +89,22 @@ nav button {
     text-align: center;
     height: 30px;
     transition: opacity 0.5s ease;
+    border-radius: 20px;
+    font-size: 2rem;
+
 }
 
-#textline {
-    position: fixed;        /* makes it float above everything */
-    top: 20px;              /* distance from top of screen */
-    left: 50%;              /* center horizontally */
+#rewardsbalance {
+    position: fixed;    
+    top: 20px;              
+    left: 95%;             
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 12px 20px;
     border-radius: 8px;
     font-size: 1.2rem;
-    opacity: 0;             /* start invisible */
     transition: opacity 0.4s ease;
-    pointer-events: none;   /* clicks pass through it */
-    z-index: 9999;          /* stays above all buttons */
+    pointer-events: none;  
+    z-index: 9999;           
 }

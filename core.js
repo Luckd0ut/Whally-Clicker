@@ -14,7 +14,6 @@ const nfts= document.getElementById("nfts");
 const save=  document.getElementById("save");
 
 
-
 let count = 0;
 let score = 1;
 let basecost =  1000;
@@ -44,13 +43,15 @@ const json = JSON.stringify(savedata);
 localStorage.setItem("savefile", json);
 };
 
-save.addEventListener("click", () => {
+/*save.addEventListener("click", () => {
     savegame();
-});
+});*/
 
 function loadgame () {
     const json = localStorage.getItem("savefile");
-    if (!json) return;
+    if (!json){
+    return;}
+    
     const data = JSON.parse(json);
 
     count = data.count;
@@ -68,6 +69,12 @@ function loadgame () {
 //basic function to update the UI after each upgrade.
 function updateUI() {
 balance.textContent = `Points: ${count}`;
+afktimer.textContent = `afk timer: ${timer}`;
+currentscore.textContent = `Points per click: ${score}`;
+upgradebtn.textContent = `Upgrade clicker: ${basecost}`;
+ppool.textContent = `Passive pool: ${ppoolcost}`;
+royalsubjects.textContent = `Royal Subjects: ${royalsubjectscost}`;
+nfts.textContent = `Stake some nfts: ${nftscost}`;
 }
 
 document.addEventListener("visibilitychange", () => {
@@ -105,6 +112,7 @@ pointslog.textContent= ` you gained ${score} points`;
 clickmessage.textContent = ` your current balance is ${points}`;
 balance.innerHTML = `Balance: ${count}`;
 currentscore.textContent= `Points per click:${score}`;
+animatewhally();
 
 //afk timer function
 if ( timer <=897){
@@ -117,6 +125,14 @@ clickmessage.textContent= ""
 pointslog.textContent = ""
 }, 5000);
 });
+
+// animation for the main button 
+function animatewhally(){
+    const whale = document.getElementById("whally");
+    whale.classList.add("whale-clicked");
+    setTimeout(() => 
+    whale.classList.remove("whale-clicked"), 150);
+} 
 //function for the main clicker upgrade. max lvl 9. (671,000 cost)
 upgradebtn.addEventListener("click", () => {
     let missing =  basecost - count;
@@ -218,9 +234,16 @@ if ( nftscost > 700000)
 }
 });
 
+window.addEventListener("visibilitychange", () => {
+    if (document.hidden) savegame();
+});
+  
+
 
 loadgame();
+
 //next plan is to connect the rewards buttons to the main program to track and subtract points from the count when nfts are claimed.
 //then we need to add the prestige reset function to this program, max of 3x resets for 2x point values next season.
 //JSON functions can all be created as well while we wait for server connection. 
-//
+// ASAP need to add costs of passives to the updateUI function so they dont display the wrong values on page refresh.
+// ASAP need to change CSS to allow for mobile friendly formatting.

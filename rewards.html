@@ -1,44 +1,51 @@
 <!DOCTYPE html>
-<head></head>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-<body>
+<body class="rewardsbody">
     <h1> Rewards Page.</h1>
     <nav> 
       <button onclick="window.location.href='main.html'">Return to Game.</button>
       <button onclick="window.location.href='leaderboard.html'">Leaderboard</button>
       <button onclick="window.location.href='about.html'">About.</button>
+      <button onclick="window.location.href='policy.html'">Privacy Policy.</button>
+      <button id="rewardssave">Save.</button>
     </nav>
-    <p>welcome to the rewards page! here you can spend your spare points on a rotating selection of your favorite blue mob items! keep
-        an eye out for collaborative and holiday items! 
+    <p id=rewardsbalance></p>
+
+    <p>welcome to the rewards page! <br>here you can spend your spare points on a rotating selection of your favorite blue mob items!<br> keep
+        an eye out for collaborative and special event items! 
     </p>
 <h1> Claim your Rewards:</h1>
 <div id="rewardscall">
-    <button id="reward1" class="rewardscard">Gold nft.
+    <button id="reward1" class="rewardscard">Gold nft <br> 100000.
         <img src="rewardsimg/whallygold.png">
     </button> 
-    <button id="reward2" class="rewardscard">Blue mob booster pack.
+    <button id="reward2" class="rewardscard">Blue mob booster pack.<br>placeholder
         <img src="rewardsimg/bluemobboosterpack.png">
     </button>
-    <button id="reward3" class="rewardscard">gems pack.
+    <button id="reward3" class="rewardscard">gems pack.<br> placeholder
         <img src="rewardsimg/gemschest.png">
     </button>
-    <button id="reward4" class="rewardscard">blue mob totem.
+    <button id="reward4" class="rewardscard">blue mob totem. <br> placeholder
         <img src="rewardsimg/totem.png">
     </button>
-    <button id="reward5" class="rewardscard">regal necklace.
+    <button id="reward5" class="rewardscard">regal necklace.<br> placeholder
         <img src="rewardsimg/regalnecklace..png">
     </button>
-    <button id="reward6" class="rewardscard">100,000,000 WHALLY
+    <button id="reward6" class="rewardscard">100,000,000 WHALLY <br> placeholder
         <img src="rewardsimg/whallycoin.png">
     </button>
-    <button id="reward7" class="rewardscard">500,000,000 WHALLY
+    <button id="reward7" class="rewardscard">500,000,000 WHALLY <br> placeholder
         <img src="rewardsimg/500whallycoin.png">
     </button>
     <!--<li><button id="reward8">8</button></li> !-->
 </div>
+
 <div>
 <p id="textline"></p>
-</div>  
+</div>
+
 <link rel="stylesheet" href="style2.css">
 <script src="rewards.js"></script>
 </body>

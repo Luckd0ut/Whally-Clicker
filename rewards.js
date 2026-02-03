@@ -7,9 +7,8 @@ const reward6= document.getElementById("reward6");
 const reward7= document.getElementById("reward7");
 const reward8= document.getElementById("reward8");
 const textline = document.getElementById("textline");
-//use the next few lines to build each button out. they just need to register a click function for now that has a pop up text that says they
-// claimed the reward with literals. this page is just for rewards after all. keep it simple.
-
+const rewardsbalance= document.getElementById("rewardsbalance");
+const rewardssave= document.getElementById("rewardssave");
 
 let firstReward = "Gold nft.";
 let secondReward = "Blue mob booster pack.";
@@ -20,17 +19,67 @@ let sixthReward = " 100,000,000 WHALLY";
 let seventhReward = "500,000,000 WHALLY";
 let eighthReward = "";
 let inactivetimer= null;
+let rewardscount =0; //future use for json parsing
 
-console.log("test")
+rewardsbalance.textContent = `${rewardscount}`
+
+function loadrewards () {
+    const json = localStorage.getItem("savefile");
+    if (!json) return;
+    const data = JSON.parse(json);
+
+    rewardscount = data.count;
+
+};
+
+function updateRewardsUI() {
+    rewardsbalance.textContent= `Balance: ${rewardscount}`;
+}
+
+
+function saveRewardCount() {
+    const json = localStorage.getItem("savefile");
+    if (!json) return;
+
+    const data = JSON.parse(json);
+    data.count = rewardscount;
+
+    localStorage.setItem("savefile", JSON.stringify(data));
+    rewardsbalance.textContent = " File saved!";
+    setTimeout(() => {
+        rewardsbalance.textContent = `${rewardscount}`;
+    }, 2000);
+    
+}
+
+
+rewardssave.addEventListener("click", () => {
+    saveRewardCount();
+
+})
+
 
 
 reward1.addEventListener("click", () => {
+    let cost = 100000;
+    if ( rewardscount > cost) {
         textline.textContent = `You have redeemed a ${firstReward}`;
         textline.style.opacity =1;
+        rewardscount -= cost;
+      saveRewardCount();
+      updateRewardsUI();
         setTimeout(() => {
             textline.textContent = "";
             textline.style.opacity = 0;
     }, 5000);
+}
+if ( cost > rewardscount) {
+    textline.textContent = "Insufficient Balance.";
+    setTimeout(() => {
+       textline.textContent = ""; 
+    }, 2000);
+}
+
 });
 
 
@@ -98,3 +147,6 @@ textline.style.opacity =1;
             textline.style.opacity =0;
     }, 5000);
 }); */
+
+loadrewards();
+updateRewardsUI();

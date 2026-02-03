@@ -9,28 +9,63 @@ h2 {
     text-align: center;
 }
 nav {
-    background: #0ab0e2;
-    padding: 15px 20px;
-    border-radius: 20px;
+    background: transparent;
+    padding: 15px 10px;
+    border-radius: 0 0 20px 20px;
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 0px;
+    margin-bottom: 10px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
 }
 nav button {
-    margin-right: 10px;
-    padding: 10px 20px;
+    margin-right: 50px;
+    padding: 10px 50px;
     color: rgb(0, 0, 0);
     border-radius: 20px;
 }
 
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  nav button {
+    padding: 10px 20px;
+    margin-right: 0;
+    width: 80%;
+  }
+  #upgrade { 
+    position: static;
+     margin: 20px auto;
+      width: 90%; 
+      max-width: 300px;
+    }
+    #warning {
+        top: auto;
+        bottom: 10%;
+        left: 5%;
+        right: 5%;
+        width: 90%;
+        text-align: center;
+        font-size: 3rem;
+     }
+}
+
+
+
 #warning {
-    justify-content: center;
-    color: red;
-    font-size:x-large;
+    
+    color: rgb(2, 2, 2);
+    font-size: 3rem;
     border: 20px;
     position: fixed;
-    top: 50%;
-    left: 35%;
+      top: 70%;
+    left: 30%;
     box-shadow: inset;
     transition: all;
 
@@ -41,22 +76,33 @@ header {
 }
 
 #click img {
-    
-    height: 250px;
-    width: 250px;
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1/1;
     display: block;
     margin: 0 auto;
     border-radius: 15px;
     transform: translateY(3px) scale(0.95);
     
 }   
+@keyframes clickpulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(0.9);}
+    100% {transform: scale(1);}
+}
+
 #click {
     background-color: rgb(255, 251, 0);
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
+    
 }
+.whale-clicked {
+    animation: clickpulse 150ms ease;
+}
+
 #click.press {
     transform: translateY(3px) scale(0.95);
 }
@@ -80,25 +126,37 @@ header {
     justify-content: center;
     align-items: center;
     width: 100%;
+    font-size: x-large;
 }
 
-#upgrade{
+#upgrade {
     position: absolute;
-    top: 5px;
-    right: 5px;
-    height: 400px;
-    width: 200px;
+    top: 0px;
+    right: 0px;
+    max-height: 400px;
+    max-width: 200px;
     background-color: aqua;
-    border: 5px;
+    border: 2px solid black;
     border-radius: 5px;
-    border-color: rgb(6, 247, 215);
+
+    backdrop-filter: blur(4px);
+     box-shadow: 0 4px 10px rgba(0,0,0,0.25);
 }
+
 
 #upgradebtn {
-    width:200px;
+    max-width:200px;
+    margin-bottom: 10px;
 }
 
 .ppool {
-    width: 400px;
+    max-width: 400px;
     border-radius: 15px;
+}
+
+body.mainbody{
+    background-image :url(rewardsimg/mainbackground.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
