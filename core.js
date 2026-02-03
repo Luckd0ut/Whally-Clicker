@@ -15,9 +15,16 @@ const save=  document.getElementById("save");
 
 
 let count = 0;
-let score = 1;
+let score = 1000000;
 let basecost =  1000;
-let level = 1
+let clickermax = 12;
+let ppoolmax =10;
+let royalmax =5;
+let nftmax =5;
+let level =0;
+let ppoollvl =0;
+let royallvl =0;
+let nftlvl =0;
 let inactivityTimer;
 let passive = 0;
 let ppoolcost= 3000;
@@ -33,6 +40,9 @@ count,
 score,
 basecost,
 level,
+ppoollvl,
+royallvl,
+nftlvl,
 passive,
 ppoolcost,
 royalsubjectscost,
@@ -43,9 +53,10 @@ const json = JSON.stringify(savedata);
 localStorage.setItem("savefile", json);
 };
 
-/*save.addEventListener("click", () => {
+//save button
+save.addEventListener("click", () => {
     savegame();
-});*/
+});
 
 function loadgame () {
     const json = localStorage.getItem("savefile");
@@ -58,6 +69,9 @@ function loadgame () {
     score = data.score;
     basecost = data.basecost;
     level = data.level;
+    ppoollvl = data.ppoollvl;
+    royallvl = data.royallvl;
+    nftlvl = data.nftlvl;
     passive = data.passive;
     ppoolcost = data.ppoolcost;
     royalsubjectscost = data.royalsubjectscost;
@@ -75,6 +89,15 @@ upgradebtn.textContent = `Upgrade clicker: ${basecost}`;
 ppool.textContent = `Passive pool: ${ppoolcost}`;
 royalsubjects.textContent = `Royal Subjects: ${royalsubjectscost}`;
 nfts.textContent = `Stake some nfts: ${nftscost}`;
+
+if (ppoollvl >= ppoolmax)
+    {ppool.textContent = "Max LeveL."};
+if (level >= clickermax)
+    {upgradebtn.textContent = "Max Level."}
+if (royallvl >= royalmax){
+    royalsubjects.textContent = "Max Level."}
+if (nftlvl >= nftmax){
+    nfts.textContent = "Max Level"}
 }
 
 document.addEventListener("visibilitychange", () => {
@@ -109,6 +132,7 @@ button.addEventListener("click", () => {
     } else {
 pointslog.textContent= ` you gained ${score} points`;
 }
+
 clickmessage.textContent = ` your current balance is ${points}`;
 balance.innerHTML = `Balance: ${count}`;
 currentscore.textContent= `Points per click:${score}`;
@@ -133,23 +157,27 @@ function animatewhally(){
     setTimeout(() => 
     whale.classList.remove("whale-clicked"), 150);
 } 
-//function for the main clicker upgrade. max lvl 9. (671,000 cost)
+
+
+//function for the main clicker upgrade.
 upgradebtn.addEventListener("click", () => {
     let missing =  basecost - count;
     if ( count < basecost){
         pointslog.textContent = " you do not have enough points to upgrade!";
-        pointslog.textContent = `you need ${missing} points to upgrade.`
+        pointslog.textContent = `you need ${missing} points to upgrade.`;
         setTimeout (( ) => { 
             pointslog.textContent = "";
-        }, 5000); // message fades after 5 seconds.
+        }, 5000);
     }
 
     // mouse upgrade button functions
     if ( count >= basecost){
         pointslog.textContent= " Upgrade Complete!";
         score ++;
+        level ++;
         count -= basecost;
         basecost =  Math.round(basecost*1.85);
+        
         updateUI();
         upgradebtn.textContent= `Upgrade Clicker: ${basecost}`;
         if (basecost > 1000000){
@@ -157,8 +185,9 @@ upgradebtn.addEventListener("click", () => {
             upgradebtn.disabled = true; // disables the upgrade button to prevent future upgrades.
             updateUI();
         }
-        updateUI();
     }
+
+
 });
 
 // passive pool button function, used to increase passive pool and update ui of the button.
@@ -166,27 +195,28 @@ ppool.addEventListener("click", () => {
 let ppoolmissing = ppoolcost - count;
 if ( count >= ppoolcost ) { 
     passive ++;
+    ppoollvl ++;
     count -= ppoolcost;
     pointslog.textContent=" you Upgraded your Passive Pool.";
     incomep.innerHTML=`points/s:${passive}`;
     ppoolcost= Math.round(ppoolcost*1.5); 
-    ppool.textContent = `Passive Pool, cost: ${ppoolcost}`;
     updateUI();
 } else {
     pointslog.textContent = `you need ${ppoolmissing} points to upgrade.`;
     setTimeout(() => {    
     }, 5000);
 }
-if ( ppoolcost >= 116000){
-    ppool.disabled=true;
-    ppool.textContent = " Max Level.";
+if ( ppoollvl >= ppoolmax){
+    ppool.disabled = true;
 }
+
 });
 //passive income for royal subjects button functions
 royalsubjects.addEventListener ("click", () => {
     let missingroyalsubjects = royalsubjectscost - count;
     if ( count >= royalsubjectscost){
     passive += 5;
+    royallvl ++;
     count -= royalsubjectscost;
     updateUI();
     pointslog.textContent="you have added a royal subject!";
@@ -209,6 +239,7 @@ nfts.addEventListener ("click", () => {
     let missingnfts = nftscost - count;
     if ( count >= nftscost) {
         passive += 25;
+        nftlvl ++;
         count -= nftscost;
         nftscost = Math.round(nftscost *1.5);
         pointslog.textContent ="You have staked an nft!";
@@ -233,14 +264,30 @@ if ( nftscost > 700000)
     nfts.textContent = "Max Level";
 }
 });
-
-window.addEventListener("visibilitychange", () => {
-    if (document.hidden) savegame();
-});
+//function for level capping
+function levelcaps() {
+    if (level >= clickermax){ 
+        upgradebtn.disabled = true;
+    }
+    if ( ppoollvl >= ppoolmax){
+        ppool.disabled =true;
+    }
+    if (royallvl >= royalmax){
+        royalsubjects.disabled =true;
+    }
+    if (nftlvl >= nftmax){
+        nfts.disabled =true;
+    };
+}
+//window.addEventListener("visibilitychange", () => {
+  //  if (document.hidden) savegame();
+//   });
   
 
 
 loadgame();
+levelcaps();
+updateUI();
 
 //next plan is to connect the rewards buttons to the main program to track and subtract points from the count when nfts are claimed.
 //then we need to add the prestige reset function to this program, max of 3x resets for 2x point values next season.
