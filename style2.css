@@ -108,3 +108,7 @@ nav button {
     pointer-events: none;  
     z-index: 9999;           
 }
+
+.policy{
+    background-color: beige;
+}

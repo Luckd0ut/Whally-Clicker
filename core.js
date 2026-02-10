@@ -15,7 +15,7 @@ const save=  document.getElementById("save");
 
 
 let count = 0;
-let score = 1000000;
+let score = 1;
 let basecost =  1000;
 let clickermax = 12;
 let ppoolmax =10;
@@ -54,10 +54,10 @@ localStorage.setItem("savefile", json);
 };
 
 //save button
-save.addEventListener("click", () => {
+/*save.addEventListener("click", () => {
     savegame();
-});
-
+});*/
+//load game function
 function loadgame () {
     const json = localStorage.getItem("savefile");
     if (!json){
@@ -77,6 +77,11 @@ function loadgame () {
     royalsubjectscost = data.royalsubjectscost;
     nftscost = data.nftscost;
     timer = data.timer;
+
+    levelclamp(level, 1, clickermax);
+    levelclamp(ppoollvl, 0, ppoolcost);
+    levelclamp(royallvl, 0, royalmax);
+    levelclamp(nftlvl, 0, nftmax);
     updateUI();
 }
 
@@ -97,7 +102,7 @@ if (level >= clickermax)
 if (royallvl >= royalmax){
     royalsubjects.textContent = "Max Level."}
 if (nftlvl >= nftmax){
-    nfts.textContent = "Max Level"}
+    nfts.textContent = `${nftlvl}`}
 }
 
 document.addEventListener("visibilitychange", () => {
@@ -279,18 +284,23 @@ function levelcaps() {
         nfts.disabled =true;
     };
 }
-//window.addEventListener("visibilitychange", () => {
-  //  if (document.hidden) savegame();
-//   });
+window.addEventListener("visibilitychange", () => {
+    if (document.hidden) savegame();
+}); 
   
-
+function levelclamp(level, min, max){
+   return Math.max(1, Math.min(level, clickermax));
+};
 
 loadgame();
 levelcaps();
 updateUI();
 
-//next plan is to connect the rewards buttons to the main program to track and subtract points from the count when nfts are claimed.
+
 //then we need to add the prestige reset function to this program, max of 3x resets for 2x point values next season.
-//JSON functions can all be created as well while we wait for server connection. 
-// ASAP need to add costs of passives to the updateUI function so they dont display the wrong values on page refresh.
 // ASAP need to change CSS to allow for mobile friendly formatting.
+//Discord login needs to be built. 
+//backend needs to be built.
+//WCW a secondary login option for later.
+//imaging needs to be done for the information pages.
+//dev site subdomain and branch need to be built.

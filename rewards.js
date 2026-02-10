@@ -84,6 +84,11 @@ if ( cost > rewardscount) {
 
 
 reward2.addEventListener("click", () => {
+    let cost = 100000;
+    if ( rewardscount > cost) {
+        textline.textContent = `You have redeemed a ${firstReward}`;
+        textline.style.opacity =1;
+        rewardscount -= cost;
 textline.textContent = `You have redeemed a ${secondReward}`;
 textline.style.opacity =1;
 
@@ -91,61 +96,139 @@ textline.style.opacity =1;
             textline.textContent = "";
             textline.style.opacity =0;
     }, 5000);
+}
+    if ( cost > rewardscount) {
+    textline.textContent = "Insufficient Balance.";
+    setTimeout(() => {
+       textline.textContent = ""; 
+    }, 2000);
+}
 });
 
 reward3.addEventListener("click", () => {
-
+let cost = 100000;
+    if ( rewardscount > cost) {
+        textline.textContent = `You have redeemed a ${firstReward}`;
+        textline.style.opacity =1;
+        rewardscount -= cost;
 textline.textContent = `You have redeemed a ${thirdReward}`;
 textline.style.opacity =1;
       setTimeout(() => {
             textline.textContent = "";
             textline.style.opacity =0;
     }, 5000);
+}
+    if ( cost > rewardscount) {
+    textline.textContent = "Insufficient Balance.";
+    setTimeout(() => {
+       textline.textContent = ""; 
+    }, 2000);
+}
 });
 
 reward4.addEventListener("click", () => {
+    let cost = 100000;
+    if ( rewardscount > cost) {
+        textline.textContent = `You have redeemed a ${firstReward}`;
+        textline.style.opacity =1;
+        rewardscount -= cost;
 textline.textContent = `You have redeemed a ${fourthReward}`;
 textline.style.opacity =1;
       setTimeout(() => {
             textline.textContent = "";
             textline.style.opacity =0;
     }, 5000);
+}
+    if ( cost > rewardscount) {
+    textline.textContent = "Insufficient Balance.";
+    setTimeout(() => {
+       textline.textContent = ""; 
+    }, 2000);
+}
 });
 
 reward5.addEventListener("click", () => {
+    let cost = 100000;
+    if ( rewardscount > cost) {
+        textline.textContent = `You have redeemed a ${firstReward}`;
+        textline.style.opacity =1;
+        rewardscount -= cost;
 textline.textContent = `You have redeemed a ${fifthReward}`;
 textline.style.opacity =1;
       setTimeout(() => {
             textline.textContent = "";
             textline.style.opacity =0;
     }, 5000);
+}
+    if ( cost > rewardscount) {
+    textline.textContent = "Insufficient Balance.";
+    setTimeout(() => {
+       textline.textContent = ""; 
+    }, 2000);
+}
 });
 
 reward6.addEventListener("click", () => {
+    let cost = 100000;
+    if ( rewardscount > cost) {
+        textline.textContent = `You have redeemed a ${firstReward}`;
+        textline.style.opacity =1;
+        rewardscount -= cost;
 textline.textContent = `You have redeemed  ${sixthReward}`;
 textline.style.opacity =1;
       setTimeout(() => {
             textline.textContent = "";
             textline.style.opacity =0;
     }, 5000);
+    }
+    if ( cost > rewardscount) {
+    textline.textContent = "Insufficient Balance.";
+    setTimeout(() => {
+       textline.textContent = ""; 
+    }, 2000);
+}
 });
 
 reward7.addEventListener("click", () => {
+    let cost = 100000;
+    if ( rewardscount > cost) {
+        textline.textContent = `You have redeemed a ${firstReward}`;
+        textline.style.opacity =1;
+        rewardscount -= cost;
 textline.textContent = `You have redeemed  ${seventhReward}`;
 textline.style.opacity =1;
       setTimeout(() => {
             textline.textContent = "";
             textline.style.opacity =0;
     }, 5000);
+}
+    if ( cost > rewardscount) {
+    textline.textContent = "Insufficient Balance.";
+    setTimeout(() => {
+       textline.textContent = ""; 
+    }, 2000);
+}
 });
 
 /*reward8.addEventListener("click", () => {
+    let cost = 100000;
+    if ( rewardscount > cost) {
+        textline.textContent = `You have redeemed a ${firstReward}`;
+        textline.style.opacity =1;
+        rewardscount -= cost;
 textline.textContent = `You have redeemed a ${reward8}`;
 textline.style.opacity =1;
       setTimeout(() => {
             textline.textContent = "";
             textline.style.opacity =0;
     }, 5000);
+}
+    if ( cost > rewardscount) {
+    textline.textContent = "Insufficient Balance.";
+    setTimeout(() => {
+       textline.textContent = ""; 
+    }, 2000);
+}
 }); */
 
 loadrewards();
