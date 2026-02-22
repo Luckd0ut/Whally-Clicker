@@ -387,10 +387,4 @@ levelcaps();
 updateUI();
 
 
-//then we need to add the prestige reset function to this program, max of 3x resets for 2x point values next season.
-// ASAP need to change CSS to allow for mobile friendly formatting.
-//Discord login needs to be built. 
-//backend needs to be built.
-//WCW a secondary login option for later.
-//imaging needs to be done for the information pages.
-//dev site subdomain and branch need to be built.
+
