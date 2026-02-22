@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1> LOG IN:</h1>
+    <button id="discordlogin">Discord.</button>
+
+
+
+    <link rel="stylesheet" href="style.css">
+    <script src = "login.js" type="module"></script>
+
+    <script type="module">
+    import { startDiscordLogin } from "./login.js";
+
+    document.getElementById("discordlogin").addEventListener("click", () => {
+        startDiscordLogin();
+    });
+</script>
+
+    
+</html>
